@@ -40,4 +40,35 @@ $(document).ready(function () {
                 .addClass("catalogue__items-active");
         }
     );
+
+    function openModal(item) {
+        $(".overlay").fadeIn();
+        $(".modal__content").eq(item).fadeIn();
+        $("body").addClass("noscroll");
+    }
+
+    function closeModal() {
+        $(".overlay").fadeOut();
+        $(".modal__content").fadeOut();
+        $("body").removeClass("noscroll");
+    }
+
+    $("#callButton").on("click", function () {
+        openModal(0);
+    });
+
+    $(".promo__button").on("click", function () {
+        openModal(0);
+    });
+
+    $(".button__catalogue").each(function (i) {
+        $(this).on("click", function () {
+            $("#order .modal__text").text($(".title__catalogue").eq(i).text());
+            openModal(1);
+        });
+    });
+
+    $(".modal__close").on("click", function () {
+        closeModal();
+    });
 });
